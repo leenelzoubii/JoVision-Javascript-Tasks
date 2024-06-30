@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Age from Name</title>
+</head>
+<body>
+
+<label for="nameField">Name:</label><br>
+<input type="text" id="nameField" placeholder="Enter your name"><br><br>
+
+<button onclick="getAgeFromAPI()">Submit</button>
+
+<script>
+function getAgeFromAPI() {
+    const name = document.getElementById('nameField').value;
+    
+    // Make a GET request to the Agify API
+    fetch(`https://api.agify.io?name=${name}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Extract age from the response
+            const age = data.age;
+
+            // Display a popup with the name and age
+            window.alert(`Your name is: ${name}\nYour age is: ${age}`);
+        })
+        .catch(error => {
+            console.error('Error fetching age:', error);
+            // Display an alert with the error message
+            window.alert(`Failed to fetch age: ${error.message}`);
+        });
+}
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get IP Address</title>
+</head>
+<body>
+
+<button onclick="getAndDisplayIPAddress()">Get IP</button>
+
+<script>
+function getAndDisplayIPAddress() {
+    const button = document.querySelector('button');
+
+    fetch('https://api.ipify.orgx/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(data => {
+            button.textContent = `Your IP Address: ${data}`;
+        })
+        .catch(error => {
+            console.error('Error fetching IP address:', error);
+            window.alert(`Failed to fetch IP: ${error.message}`);
+        });
+}
+</script>
+
+</body>
+</html>

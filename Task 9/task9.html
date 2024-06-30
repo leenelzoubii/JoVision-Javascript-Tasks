@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get IP Address</title>
+</head>
+<body>
+
+<button onclick="getIPAddress()">Get IP</button>
+
+<script>
+function getIPAddress() {
+    fetch('https://api.ipify.org/')
+        .then(response => response.text())
+        .then(data => {
+            console.log('Your IP Address is:', data);
+        })
+        .catch(error => {
+            console.error('Error fetching IP address:', error);
+        });
+}
+</script>
+
+</body>
+</html>
