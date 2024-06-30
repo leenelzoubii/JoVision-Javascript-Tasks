@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods with Buttons</title>
+</head>
+<body>
+    <button id="button1">Button One</button>
+    <button id="button2">Button Two</button>
+    <button id="button3">Button Three</button>
+    <button id="button4">Button Four</button>
+    <button id="button5">Button Five</button>
+
+    <script>
+        function createArray() {
+            let numbers = [];
+            for (let i = 0; i <= 100; i++) {
+                numbers.push(i);
+            }
+            return numbers;
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        document.getElementById("button1").addEventListener("click", function() {
+            let numbers = createArray();
+            let filteredNumbers = numbers.filter(number => number % 3 !== 0);
+            console.log("Numbers not divisible by 3:", filteredNumbers);
+        });
+
+        document.getElementById("button2").addEventListener("click", function() {
+            let numbers = createArray();
+            for (let i = 101; i <= 150; i++) {
+                numbers.push(i);
+            }
+            console.log("Array with numbers from 0 to 150:", numbers);
+        });
+
+        document.getElementById("button3").addEventListener("click", function() {
+            let numbers = createArray();
+            let incrementedNumbers = numbers.map(number => number + 3);
+            console.log("Array with each number increased by 3:", incrementedNumbers);
+        });
+
+        document.getElementById("button4").addEventListener("click", function() {
+            let numbers = createArray();
+            let subArray = numbers.slice(20, 41);
+            console.log("Array members from index 20 to 40:", subArray);
+        });
+
+        document.getElementById("button5").addEventListener("click", function() {
+            let numbers = createArray();
+            shuffleArray(numbers);
+            console.log("Shuffled array:", numbers);
+            numbers.sort((a, b) => b - a);
+            console.log("Sorted array in descending order:", numbers);
+        });
+    </script>
+</body>
+</html>
+
